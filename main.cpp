@@ -7,49 +7,6 @@
 #include <array>
 #include <map>
 
-//steps to create grid:
-//1. basics of 2d array in vectors
-//2. store rect object/sprite on 2d array
-//3. print rect object using the stored object in 2d array
-
-//4. add mouse pressed function to change the color of chosen cells
-//prob: if mouse is moved while pressed, it doesn't register to change color
-
-//5. sol: line function (y = mx + b)
-// b = start pos of mouse
-//
-// horizontal_distance(h_dist)   -   abs(x2 - x1)
-// vertical_distance(v_dist)     -   abs(y2 - y1)
-//
-// m (slope) = v_dist / h_dist
-
-
-// if( h_dist > v_dist ) //horizontal is longer
-//      -every time x moves by 1, move y using line formula (y = mx + b)
-//      -change cells to 'selected'
-
-// if( h_dist < v_dist ) //vertical is longer
-//      -use line formula (x = y / m), to find x in terms of y
-
-
-
-// steps to get started with pathfinding:
-//6. add start and finish (usage: left mouse button then press s - start and f - finish)
-//7. 1st pathfinding algo: bfs using queues
-// queues - is a ds open on both sides (First in, First Out) FIFO
-//  -to add: .push(element)
-//  -to remove: .pop()
-
-// usage of queue in bfs:
-// 1.at the start, queue consist of '1 cell' - start cell
-// 2.then mark that cell 'visited' to avoid checking again
-// 3.each step of search, remove the '1st cell' out of queue
-// 4.if the cell 'finish cell', stop search.
-// 5.if not get the adjacent cells(top,left,right,bottom) then 
-//   include the unvisited cells in queue then mark them visited
-// 6.then remove the next cell out of queue
-// 7.repeat until it reaches 'finish cell' or queue becomes 'empty'
-
 
 //global variables
 char origin_x = 8;
@@ -317,27 +274,6 @@ int main()
 
                         mouse_cell_start = get_mouseCell(window);
 
-                        //float mouse_x = sf::Mouse::getPosition(window).x - origin_x * resize;
-                        //float mouse_y = sf::Mouse::getPosition(window).y - origin_y * resize;
-
-                        //if (0 <= mouse_x && 0 <= mouse_y &&
-                        //    mouse_x < cell_size * col * resize && mouse_y < cell_size * col * resize) //check if mouse is inside the cells
-                        //{
-                        //    unsigned int cell_x = std::floor(mouse_x / cell_size / resize);
-                        //    unsigned int cell_y = std::floor(mouse_y / cell_size / resize);
-
-                        //    std::cout << "x: " << cell_x << " y:" << cell_y << '\n';
-
-                        //    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
-                        //    {
-                        //        v[cell_x][cell_y].setFillColor(sf::Color::White);
-                        //    }
-
-                        //    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right))
-                        //    {
-                        //        v[cell_x][cell_y].setFillColor(sf::Color::Red);
-                        //    }
-                        //}
                     }
                 }
                 else
@@ -459,26 +395,13 @@ int main()
                         }
                         else
                         {
-                            //create a switch statement that chooses the type of cell
-                            //empty: sf::Color(36, 36, 85)
-                            //path:
-                            //visited:
-                            //wall:
 
                             switch (map_nums[a][b])
                             {
                                 case Cell::Empty:
                                     map_rect[a][b].setFillColor(sf::Color(36, 36, 85));
                                     break;
-
-                                /*case Cell::Finish:
-                                    map_rect[a][b].setFillColor(sf::Color::Red);
-                                    break;
-
-                                case Cell::Start:
-                                    map_rect[a][b].setFillColor(sf::Color::Green);
-                                    break;*/
-
+                                
                                 case Cell::Wall:
                                     map_rect[a][b].setFillColor(sf::Color::White);
                                     break;
